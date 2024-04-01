@@ -6,7 +6,6 @@ const boardTrackedUser = mongoose.Schema(
         user_name:{
             type: String,
             require: true,
-            unique: true
         },
         user_solve_question_count:{
             type: Number,
@@ -18,7 +17,6 @@ const boardTrackedUser = mongoose.Schema(
         }
     }
 );
-boardTrackedUser.plugin(mongooseUniqueValidator,{message:'ERROR expected {PATH} must be unique'});
 export const BoradTrackUser = mongoose.model('BoradTrackUser', boardTrackedUser);
 
 

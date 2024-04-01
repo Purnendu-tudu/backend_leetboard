@@ -1,6 +1,8 @@
 import { Router } from "express";
 import {leetcode} from "../middleware/leetCode.mjs";
 import { createBoard } from "../middleware/createBoard.mjs";
+import { getBoardDetails } from "../middleware/getBoradDetails.mjs";
+import { deleteABoard } from "../middleware/deleteBoard.mjs";
 
 const route = Router();
 
@@ -9,6 +11,8 @@ route.get('/hello',(req, res)=>{
 });
 
 route.get('/leetProfile/:id', leetcode);
+route.post('/leetBoard',getBoardDetails);
+route.delete('/destroyBoard',deleteABoard);
 
 route.post('/create/:name', createBoard);
 

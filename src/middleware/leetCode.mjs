@@ -61,7 +61,7 @@ const formatData = (data) => {
     let sendData =  {
         totalSolved: data.matchedUser.submitStats.acSubmissionNum[0].count,
         // totalSubmissions:  data.matchedUser.submitStats.totalSubmissionNum,
-        // totalQuestions: data.allQuestionsCount[0].count,
+        totalQuestions: data.allQuestionsCount[0].count,
         // easySolved: data.matchedUser.submitStats.acSubmissionNum[1].count,
         // totalEasy: data.allQuestionsCount[1].count,
         // mediumSolved: data.matchedUser.submitStats.acSubmissionNum[2].count,
@@ -93,13 +93,13 @@ export const leetcode = (req, res) => {
     .then(result => result.json())
     .then(data => {
       if(data.errors){
-        res.send(data);
+        res.status(201).send({status:false,data:data});
       }else {
-        res.send(formatData(data.data));
+        res.send({status:true , user_name: user, data:formatData(data.data)});
       }
     })
     .catch(err=>{
         console.error('Error', err);
-        res.send(err);
+        res.send({status:false, data:err});
     });
 }
